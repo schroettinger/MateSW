@@ -20,7 +20,6 @@ class App:
         print("hi there, everyone!")
 
 
-
 # one root element as tk inter main element
 root = Tk()
 
