@@ -3,6 +3,9 @@ from tkinter import font  as tkfont # python 3
 #import Tkinter as tk     # python 2
 #import tkFont as tkfont  # python 2
 
+import rfid
+
+
 class SampleApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -22,7 +25,7 @@ class SampleApp(tk.Tk):
         w, h = self.winfo_screenwidth(), self.winfo_screenheight()
 
         # to get rid of the titlebar:
-        self.overrideredirect(1)
+        #self.overrideredirect(1)
 
         # redefine the geometry of your mainwindow
         self.geometry("%dx%d+0+0" % (w, h))
@@ -61,9 +64,12 @@ class StartPage(tk.Frame):
                             command=lambda: controller.show_frame("PageTwo"))
         button3 = tk.Button(self, text="Quit",
                             command=self.quit)
+        button4 = tk.Button(self, text="test rfid.py import",
+                            command=rfid.test)
         button1.pack()
         button2.pack()
         button3.pack()
+        button4.pack()
 
 
 class PageOne(tk.Frame):
