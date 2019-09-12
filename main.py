@@ -180,8 +180,15 @@ class Oberflaeche(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
+        # get the information about width and height of your screen
+        w, h = self.winfo_screenwidth(), self.winfo_screenheight()
+
         # to get rid of the titlebar:
-        #self.overrideredirect(1)
+        self.overrideredirect(1)
+
+        # redefine the geometry of your mainwindow
+        self.geometry("%dx%d+0+0" % (w, h))
+
         self.frames = {}
 
         for F in (StartPage, PageOne, PageTwo):

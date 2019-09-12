@@ -1,0 +1,13 @@
+### python project bei systemstart starten:
+
+        pi@raspberrypi:~ $ sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+            # @lxpanel --profile LXDE-pi
+            # @pcmanfm --desktop --profile LXDE-pi
+            @/usr/bin/python3 /home/pi/MateSW/main.py
+            @xscreensaver -no-splash
+            point-rpi
+
+### clone git repo in order to get the newest project version
+
+        pi@raspberrypi:~ $ git clone https://github.com/schroettinger/MateSW
+
