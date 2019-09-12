@@ -7,3 +7,7 @@
             @xscreensaver -no-splash
             point-rpi
 
+### clone git repo in order to get the newest project version
+
+        pi@raspberrypi:~ $ git clone https://github.com/schroettinger/MateSW
+
