@@ -1,0 +1,9 @@
+### python project bei systemstart starten:
+
+        pi@raspberrypi:~ $ sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+            # @lxpanel --profile LXDE-pi
+            # @pcmanfm --desktop --profile LXDE-pi
+            @/usr/bin/python3 /home/pi/MateSW/main.py
+            @xscreensaver -no-splash
+            point-rpi
+
