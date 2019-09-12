@@ -1,0 +1,6 @@
+Links zu dem Kiosk zum anschauen und ausprobiren;
+https://raspberry-projects.com/pi/software_utilities/kiosk-mode
+https://github.com/MobilityLab/TransitScreen/wiki/Raspberry-Pi
+https://stenobot.wordpress.com/2018/01/03/run-a-raspberry-pi-in-standalone-kiosk-mode/
+https://willhaley.com/blog/fullscreen-raspberry-pi-app-tft/
+https://www.youtube.com/watch?v=DkqzLHopaeE
