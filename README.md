@@ -1,5 +1,19 @@
 Mate-Bezahlsystem // Mate-SW // 
 
+    _To-Do_:
+    -1. Sprache (Deutsch vs. Englisch wählen);
+    --1 Vorschlag: Dokumentation: Deutsch, Datenbank und Code: Englisch
+    0. Dokumentation Struktur erstellen;
+    1. Raspberry Setup dokumentieren:
+    1.1 OS Setup:
+    1.1.1 "Kiosk - Mode"? Setup; //Heißt es wirklich Kiosk-Mode, oder habe ich es mir ausgedacht?
+    1.2 Application Setup;
+    1.2.1 Datenbank:
+    1.2.1.1 MySql;
+    1.2.1.2 phpMyAdmin;
+    2.Applikationsdokumentation;
+    2.1 Konzept, Anwendugsfälle, Klassendiagram, Datenbankmodel etc.
+    - weiter todoes :D
 
 
 
