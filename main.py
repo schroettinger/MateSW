@@ -1,3 +1,112 @@
+import threading
+import tkinter as tk
+
+LARGE_FONT = ("Comic Sans", 12)
+
+class Oberflaeche(tk.Tk):
+
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+        container = tk.Frame(self)
+        container.pack(side="top", fill="both", expand=True)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+
+        # get the information about width and height of your screen
+        w, h = self.winfo_screenwidth(), self.winfo_screenheight()
+
+        # to get rid of the titlebar:
+        # self.overrideredirect(1)
+
+        # redefine the geometry of your mainwindow
+        self.geometry("%dx%d+0+0" % (w, h))
+        self.frames = {}
+
+        for F in (StartPage, PageOne, PageTwo):
+            frame = F(container, self)
+            self.frames[F] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
+
+        self.show_frame(StartPage)
+
+    def show_frame(self, cont):
+        frame = self.frames[cont]
+        frame.tkraise()
+
+
+class StartPage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Start Page", font=LARGE_FONT)
+        label.pack(pady=10, padx=10)
+        button = tk.Button(self, text="Visit Page 1",
+                           command=lambda: controller.show_frame(PageOne))
+        button.pack()
+        button2 = tk.Button(self, text="Visit Page 2",
+                            command=lambda: controller.show_frame(PageTwo))
+        button2.pack()
+
+
+class PageOne(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Page One!!!", font=LARGE_FONT)
+        label.pack(pady=10, padx=10)
+        button1 = tk.Button(self, text="Back to Home",
+                            command=lambda: controller.show_frame(StartPage))
+        button1.pack()
+        button2 = tk.Button(self, text="Page Two",
+                            command=lambda: controller.show_frame(PageTwo))
+        button2.pack()
+
+
+class PageTwo(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Page Two!!!", font=LARGE_FONT)
+        label.pack(pady=10, padx=10)
+
+        button1 = tk.Button(self, text="Back to Home",
+                            command=lambda: controller.show_frame(StartPage))
+        button1.pack()
+        button2 = tk.Button(self, text="Page One",
+                            command=lambda: controller.show_frame(PageOne))
+        button2.pack()
+
+
+class App(threading.Thread):
+
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.start()
+
+    def callback(self):
+        self.root.quit()
+
+    def run(self):  # Method representing the thread's activity
+        app = Oberflaeche() # Toplevel-Widget
+        app.mainloop()  # mainloop of Tk
+
+# define one "app" as App - this starts the GUI
+app = App()
+
+# From this point on we can run a thread in parallel to our
+print('Now we can continue running code while mainloop runs!')
+
+# dummy lines to have something to calculate for proof of threading
+i=0
+while i < 100000:
+    i = i+1
+    print(i)
+    if(i==100000):
+        i=0
+
+
+
+################################################################
 # import tkinter as tk                # python 3
 # from tkinter import font  as tkfont # python 3
 # #import Tkinter as tk     # python 2
@@ -154,129 +263,3 @@
 # for i in range(100000):
 #     print(i)
 # # ich bin ein neuer Kommentar
-
-
-
-# Run tkinter code in another thread
-
-# https://pythonprogramming.net/change-show-new-frame-tkinter/
-# https://pythonspot.com/inner-classes/
-#
-
-import threading
-import tkinter as tk
-
-LARGE_FONT = ("Verdana", 12)
-
-
-class Oberflaeche(tk.Tk):
-
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
-        container = tk.Frame(self)
-
-        container.pack(side="top", fill="both", expand=True)
-
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
-
-        # get the information about width and height of your screen
-        w, h = self.winfo_screenwidth(), self.winfo_screenheight()
-
-        # to get rid of the titlebar:
-        self.overrideredirect(1)
-
-        # redefine the geometry of your mainwindow
-        self.geometry("%dx%d+0+0" % (w, h))
-
-        self.frames = {}
-
-        for F in (StartPage, PageOne, PageTwo):
-            frame = F(container, self)
-
-            self.frames[F] = frame
-
-            frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame(StartPage)
-
-    def show_frame(self, cont):
-        frame = self.frames[cont]
-        frame.tkraise()
-
-
-class StartPage(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Start Page", font=LARGE_FONT)
-        label.pack(pady=10, padx=10)
-
-        button = tk.Button(self, text="Visit Page 1",
-                           command=lambda: controller.show_frame(PageOne))
-        button.pack()
-
-        button2 = tk.Button(self, text="Visit Page 2",
-                            command=lambda: controller.show_frame(PageTwo))
-        button2.pack()
-
-
-class PageOne(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page One!!!", font=LARGE_FONT)
-        label.pack(pady=10, padx=10)
-
-        button1 = tk.Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(StartPage))
-        button1.pack()
-
-        button2 = tk.Button(self, text="Page Two",
-                            command=lambda: controller.show_frame(PageTwo))
-        button2.pack()
-
-
-class PageTwo(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page Two!!!", font=LARGE_FONT)
-        label.pack(pady=10, padx=10)
-
-        button1 = tk.Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(StartPage))
-        button1.pack()
-
-        button2 = tk.Button(self, text="Page One",
-                            command=lambda: controller.show_frame(PageOne))
-        button2.pack()
-
-
-
-
-
-class App(threading.Thread):
-
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.start()
-
-    def callback(self):
-        self.root.quit()
-
-    def run(self):
-        app = Oberflaeche()
-        app.mainloop()
-
-
-app = App()
-print('Now we can continue running code while mainloop runs!')
-
-
-i=0
-while i < 100000:
-    i = i+1
-    print(i)
-    if(i==100000):
-        i=0

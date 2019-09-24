@@ -7,7 +7,74 @@
             @xscreensaver -no-splash
             point-rpi
 
+
+### start rpi into normal desktop mode:
+
+        pi@raspberrypi:~ $ sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+            @lxpanel --profile LXDE-pi
+            @pcmanfm --desktop --profile LXDE-pi
+            # @/usr/bin/python3 /home/pi/MateSW/main.py
+            # @xscreensaver -no-splash
+            point-rpi
+
+
+### Connect to WiFi with invisible SSID:
+
+        pi@raspberrypi:~ $ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+            ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+            update_config=1
+            country=GB
+
+            network={
+                    ssid="insert_your_hidden_SSID_here"
+                    scan_ssid=1 # this line forces the rpi to scan for hidden SSIDs
+                    psk="insert_your_wifi_password_here"
+                    key_mgmt=WPA-PSK
+            }
+
+
 ### clone git repo in order to get the newest project version
 
         pi@raspberrypi:~ $ git clone https://github.com/schroettinger/MateSW
+
+
+### if it is needed to get a new shell
+        ctrl + ALT + F#
+        "#" is a number
+
+
+### How to get other python files into my project?
+
+        simply store the files at the same folder
+
+
+### Used as base
+        - Raspberry Pi 3 B+
+        - RPi 7" Touchscreen
+        -
+
+
+### Configuration things
+        - SPI activated for connection to the RFID board attached via GPIO
+        - SSH activated for maintainance while
+
+
+### tk inter help (ger)
+        http://www.wspiegel.de/tkinter/tkinter01.html
+
+
+### Run tkinter code in another thread
+
+        https://pythonprogramming.net/change-show-new-frame-tkinter/
+        https://pythonspot.com/inner-classes/
+
+
+
+### Pastebin
+        lsmod
+        NAME
+            lsmod - Show the status of modules in the Linux Kernel
+
+
+
 
