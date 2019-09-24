@@ -40,8 +40,12 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Start Page", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
+
+        buttonwidth, buttonheigth = self.winfo_screenwidth()-100, (self.winfo_screenheight()//100)
         button = tk.Button(self, text="Visit Page 1",
-                           command=lambda: controller.show_frame(PageOne))
+                           command=lambda: controller.show_frame(PageOne),
+                           height=buttonheigth,
+                           width=buttonwidth)
         button.pack()
         button2 = tk.Button(self, text="Visit Page 2",
                             command=lambda: controller.show_frame(PageTwo))
