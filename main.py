@@ -1,7 +1,9 @@
 import threading
 import tkinter as tk
 
+
 LARGE_FONT = ("Comic Sans", 12)
+
 
 class Oberflaeche(tk.Tk):
 
@@ -41,15 +43,15 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text="Start Page", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
-        buttonwidth, buttonheigth = self.winfo_screenwidth()-100, (self.winfo_screenheight()//100)
+        # buttonwidth, buttonheigth = self.winfo_screenwidth()//100, (self.winfo_screenheight()//100)
         button = tk.Button(self, text="Visit Page 1",
-                           command=lambda: controller.show_frame(PageOne),
-                           height=buttonheigth,
-                           width=buttonwidth)
-        button.pack()
+                           command=print("button X pressed!"),  # lambda: controller.show_frame(PageOne),
+                           )
+        button.place(x=0, y=0, height=self.winfo_screenheight()//3, width=self.winfo_screenwidth()//2)
+    # setting doesn't matter at this point        button.width=30
         button2 = tk.Button(self, text="Visit Page 2",
                             command=lambda: controller.show_frame(PageTwo))
-        button2.pack()
+        button2.place(x=0, y=self.winfo_screenheight()//3, height=self.winfo_screenheight()//3, width=self.winfo_screenwidth()//2)
 
 
 class PageOne(tk.Frame):
@@ -91,8 +93,9 @@ class App(threading.Thread):
         self.root.quit()
 
     def run(self):  # Method representing the thread's activity
-        app = Oberflaeche() # Toplevel-Widget
+        app = Oberflaeche()  # Toplevel-Widget
         app.mainloop()  # mainloop of Tk
+
 
 # define one "app" as App - this starts the GUI
 app = App()
@@ -101,13 +104,13 @@ app = App()
 print('Now we can continue running code while mainloop runs!')
 
 # dummy lines to have something to calculate for proof of threading
-i=0
-while i < 100000:
-    i = i+1
-    print(i)
-    if(i==100000):
-        i=0
-
+# commented due to debugging to avoid second thread
+# i=0
+# while i < 100000:
+#     i = i+1
+#     print(i)
+#     if(i==100000):
+#         i=0
 
 
 ################################################################
